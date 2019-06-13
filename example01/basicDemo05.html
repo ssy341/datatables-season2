@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义搜索条件框</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+        <td>Edinburgh</td>
+        <td>61</td>
+        <td>2011/04/25</td>
+        <td>$320,800</td>
+    </tr>
+    <tr>
+        <td>Garrett Winters</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>63</td>
+        <td>2011/07/25</td>
+        <td>$170,750</td>
+    </tr>
+    <tr>
+        <td>Cedric Kelly</td>
+        <td>Senior Javascript Developer</td>
+        <td>Edinburgh</td>
+        <td>22</td>
+        <td>2012/03/29</td>
+        <td>$433,060</td>
+    </tr>
+    <tr>
+        <td>Airi Satou</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>33</td>
+        <td>2008/11/28</td>
+        <td>$162,700</td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#example').DataTable({
+            dom: "<'searchBox'>tip",
+            initComplete: function () {
+                $("div.searchBox").append("Name:<input>");
+                $("div.searchBox").append("Office:<select><option></option><option>Tokyo</option><option>Edinburgh</option></select>");
+                $("div.searchBox").append("<button>查询</button>");
+            }
+        });
+        $("div.searchBox").on("click", "button", function () {
+            var name = $("div.searchBox input").val();
+            var office = $("div.searchBox select").find("option:selected").text();
+            if (name || office) {
+                table.search(name + " " + office).draw();
+            } else {
+                table.search("").draw();
+            }
+        })
+    });
+</script>
+</body>
+</html>
