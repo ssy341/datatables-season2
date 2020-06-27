@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>自定义搜索条件框</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
 </head>
 <body>
 <table id="example" class="display" style="width:100%">
@@ -60,11 +60,13 @@
         var table = $('#example').DataTable({
             dom: "<'searchBox'>tip",
             initComplete: function () {
+                //我必须确保searchBox已经生成了，我才在里面添加input和select
                 $("div.searchBox").append("Name:<input>");
                 $("div.searchBox").append("Office:<select><option></option><option>Tokyo</option><option>Edinburgh</option></select>");
                 $("div.searchBox").append("<button>查询</button>");
             }
         });
+        //我把button给监听，监听点击事件
         $("div.searchBox").on("click", "button", function () {
             var name = $("div.searchBox input").val();
             var office = $("div.searchBox select").find("option:selected").text();

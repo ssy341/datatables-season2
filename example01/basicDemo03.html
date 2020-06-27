@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>隐藏控件</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
 </head>
 <body>
 <table id="example" class="display" style="width:100%">
@@ -58,11 +58,7 @@
 <script>
     $(document).ready(function () {
         $('#example').DataTable({
-            // dom:"lftip"
-            // dom:"ftip"
-            // dom:"tip"
-            // dom:"tp"
-            // dom:"t"
+            dom:"<'#datatables'>lftip"
         });
     });
 </script>
