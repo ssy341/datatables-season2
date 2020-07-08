@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例（类）</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Office</th>
+            <th>Position</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+
+    
+
+        function Employee ( name, position, salary, office ,city) {
+            this.name = name;
+            this.position = position;
+            this.salary = salary;
+            this._office = office;
+            this._city = city;
+        
+            this.office = function () {
+                return this._office + ", " + this._city;
+            }
+        };
+
+
+        $('#example').DataTable( {
+            data: [
+                new Employee( "Tiger Nixon", "System Architect", "$3,120", "Edinburgh" ,"England"),
+                new Employee( "Garrett Winters", "Director", "$5,300", "Edinburgh","England" )
+            ],
+            columns: [
+                { data: 'name' },
+                { data: 'salary' },
+                { data: "office" },
+                { data: 'position' }
+            ]
+        } );
+    });
+</script>
+</body>
+</html>

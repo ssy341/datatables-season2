@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Office</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+
+        var data = [
+            {
+                "name":       "Tiger Nixon",
+                "position":   "System Architect",
+                "salary":     "$3,120",
+                "start_date": "2011/04/25",
+                "office":     "Edinburgh",
+                "extn":       "5421"
+            },
+            {
+                "name":       "Garrett Winters",
+                "position":   "Director",
+                "salary":     "$5,300",
+                "start_date": "2011/07/25",
+                "office":     "Edinburgh",
+                "extn":       "8422"
+            }
+        ];
+        $('#example').DataTable({
+            data:data,
+            columns: [
+                { data: 'position' },
+                { data: 'name' },
+                { data: 'salary' },
+                { data: 'office' }
+            ]
+        });
+    });
+</script>
+</body>
+</html>
