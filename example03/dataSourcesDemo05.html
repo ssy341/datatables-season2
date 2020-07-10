@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript数据源</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+    <form action="">
+        Name: <input type="text" id="name">
+        position: <input type="text" id="position">
+        office: <input type="text" id="office">
+        age: <input type="text" id="age">
+        startdate: <input type="date" id="startdate">
+        salary: <input type="text" id="salary">
+        <br>
+        <a href="#" id="add">添加一条数据</a>
+
+    </form>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+    let table;
+    $(document).ready(function () {
+
+        let data = [
+            [
+                "Tiger Nixon",
+                "System Architect",
+                "Edinburgh",
+                "5421",
+                "2011/04/25",
+                "$3,120"
+            ],
+            [
+                "Garrett Winters",
+                "Director",
+                "Edinburgh",
+                "8422",
+                "2011/07/25",
+                "$5,300"
+            ]
+        ];
+
+        table = $('#example').DataTable({
+            data:data
+        });
+
+
+        $("#add").click(function(){
+            table.row.add([
+                $("#name").val(),
+                $("#position").val(),
+                $("#office").val(),
+                $("#age").val(),
+                $("#startdate").val(),
+                $("#salary").val()
+            ]).draw();
+
+            //请求后台把数据添加到数据
+        });
+    });
+</script>
+</body>
+</html>

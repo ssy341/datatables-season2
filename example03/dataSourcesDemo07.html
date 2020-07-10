@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom数据源绑定属性</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+    <button id="table_id_example_button">获取选中的行</button>
+    <table id="table_id_example" class="display">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+            </tr>
+            <tr>
+                <td>Row 2 Data 1</td>
+                <td>Row 2 Data 2</td>
+            </tr>
+        </tbody>
+    </table>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#table_id_example').DataTable({
+             //这样配置后，即可用DT的API来访问表格数据
+            columns: [
+                {data: "column1"},
+                {data: "column2"}
+            ]
+        });
+        //给行绑定选中事件
+         $('#table_id_example tbody').on( 'click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        } );
+        //给按钮绑定点击事件
+        $("#table_id_example_button").click(function () {
+            console.log(table.row('.selected').data());
+            alert($.parseJSON(table.row('.selected').data()))
+            var column1 = table.row('.selected').data().column1;
+            var column2 = table.row('.selected').data().column2;
+            alert("第一列内容："+column1 + "；第二列内容： " + column2);
+        });
+     });
+</script>
+</body>
+</html>
