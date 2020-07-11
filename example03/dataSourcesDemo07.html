@@ -47,13 +47,13 @@
                 $(this).addClass('selected');
             }
         } );
+        
         //给按钮绑定点击事件
         $("#table_id_example_button").click(function () {
-            console.log(table.row('.selected').data());
-            alert($.parseJSON(table.row('.selected').data()))
-            var column1 = table.row('.selected').data().column1;
-            var column2 = table.row('.selected').data().column2;
-            alert("第一列内容："+column1 + "；第二列内容： " + column2);
+            var rowData = table.row('.selected').data();
+            console.log(rowData);
+            //通过数据绑定，数据可以轻松访问
+            alert("第一列内容："+rowData.column1 + "；第二列内容： " + rowData.column2);
         });
      });
 </script>
