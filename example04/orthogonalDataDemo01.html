@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正交数据-预处理</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            ajax:"http://localhost:8080/api/objects/format",
+            columns:[
+                {data:"name"},
+                {data:"position"},
+                {data:"office"},
+                {data:"age"},
+                // {
+                //     data:{
+                //         _:"start_date.display",//作为显示
+                //         sort:"start_date.timestamp"//做为排序
+                //     }
+                // },
+                {
+                    data:"start_date",
+                    render:{
+                        _:"display",
+                        sort:"timestamp"
+                    }
+                },
+                {data:"salary"}
+            ]
+        });
+    });
+</script>
+</body>
+</html>
