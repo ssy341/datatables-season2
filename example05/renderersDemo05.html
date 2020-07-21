@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渲染器-function用法 显示毛利率</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>产品名称</th>
+            <th>创建人</th>
+            <th>创建时间</th>
+            <th>价格</th>
+            <th>成本</th>
+            <th>毛利率</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+
+    let data = [
+            {
+                "product": "Toy car",
+                "creator": {
+                    "firstName": "Fiona",
+                    "lastName": "White"
+                },
+                "created": "2015-11-01",
+                "price": 19.99,
+                "cost": 12.53
+            }
+    ];
+    $(document).ready(function () {
+        $('#example').DataTable({
+            data:data,
+            columns:[
+                {data:"product"},
+                {
+                    data:"creator",render:function(data,type,row){
+                        return data.firstName + " "+ data.lastName;
+                    }
+                },
+                {
+                    data:"created",
+                    render:function(data,type,row){
+                        var dateSplit = data.split('-');
+                        return type === "display" || type === "filter" ?
+                            dateSplit[1] +'-'+ dateSplit[2] +'-'+ dateSplit[0] :
+                            data;
+                    }
+                },
+                {
+                    data:"price",
+                    render:function(data,type,row){
+                        return "￥"+data;
+                    }
+                },
+                {data:"cost"},
+                {
+                    data:null,
+                    render:function(data,type,row){
+                        return Math.round( ( row.price - row.cost ) / row.price * 100 )+'%';
+                    }
+                }
+            ]
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渲染器-自定义渲染器函数</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>产品名称</th>
+            <th>创建人</th>
+            <th>创建时间</th>
+            <th>价格</th>
+            <th>成本</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+
+    let data = [
+            {
+                "product": "Toy car",
+                "creator": {
+                    "firstName": "Fiona",
+                    "lastName": "White"
+                },
+                "created": "2015-11-01",
+                "price": 19.99,
+                "cost": 12.53
+            },
+            {
+                "product": "Train",
+                "creator": {
+                    "firstName": "Keith",
+                    "lastName": "Shan"
+                },
+                "created": "2020-07-20",
+                "price": 399999999.99,
+                "cost": 0.01
+            },
+            {
+                "product": `Datatables中文网是结合官网给大家一个完整的、易懂的手册。 
+                    本站内容均为原创翻译制作，并获得作者的同意，本站将会持续更新，
+                     让我们更好的使用Datatables。
+                     在本站中对一些重要的方法、属性等都做了详细的批注以及示例展示。
+                `,
+                "creator": {
+                    "firstName": "Keith",
+                    "lastName": "Shan"
+                },
+                "created": "2020-07-20",
+                "price": 9999999999.99,
+                "cost": 0.01
+            }
+    ];
+
+    
+    $(document).ready(function () {
+        $('#example').DataTable({
+            data:data,
+            columns:[
+                {
+                    data:"product"
+                    ,render:$.fn.dataTable.render.ellipsis( 10 )
+                },
+                {data:"creator.firstName"},
+                {data:"created"},
+                {data:"price"},
+                {data:"cost"}
+            ]
+        });
+    });
+
+    $.fn.dataTable.render.ellipsis = function ( cutoff ) {
+        return function ( data, type, row ) {
+            if ( type === 'display' ) {
+                var str = data.toString(); // cast numbers
+                return str.length < cutoff ?
+                    str :
+                    "<span title='"+str+"'>"+str.substr(0, cutoff-1) + '&#8230;</span>';
+            }
+    
+            // Search, order and type can use the original data
+            return data;
+        };
+    };
+</script>
+</body>
+</html>
