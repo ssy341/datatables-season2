@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax获取数据-绑定列的数据点-简单数组</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Extn</th>
+            <th>Start_date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+    //  0 name "Tiger Nixon",
+    //  1 position "System Architect",
+    //  2 salary "$320,800",
+    //  3 start_date "2011/04/25",
+    //  4 office "Edinburgh",
+    //  5 extn "5421"
+    $(document).ready(function () {
+        $('#example').DataTable({
+            ajax: {
+                url: "http://localhost:8080/api/demo/05",
+                dataSrc: ''
+            }
+            ,  
+            columns:[
+                {data:0},
+                {data:1},
+                {data:4},
+                {data:5},
+                {data:3},
+                {data:2}
+            ]
+        });
+    });
+</script>
+</body>
+</html>

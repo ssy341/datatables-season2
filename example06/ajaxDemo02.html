@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax获取数据-简单的数据数组</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Extn</th>
+            <th>Start_date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            ajax: {
+                url: "http://localhost:8080/api/demo/02",
+                dataSrc: ''
+            },  
+            columns:[
+                {data:"name"},
+                {data:"position"},
+                {data:"office"},
+                {data:"extn"},
+                {data:"start_date"},
+                {data:"salary"}
+            ]
+        });
+    });
+</script>
+</body>
+</html>
