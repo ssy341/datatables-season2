@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warning: Possible column misalignment</title>
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></link>
+</head>
+<body>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Extn</th>
+                    <th>Start_date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+
+<script>
+    var table;
+    $(document).ready(function () {
+       table =  $('.display').DataTable({
+          ajax:"http://datatables.club/example/ajax/data/objects.txt",
+            columns:[
+                {data:"name"},
+                {data:"position"},
+                {data:"salary"},
+                {data:"start_date"},
+                {data:"office"},
+                {data:"extn"}
+            ],
+            scrollX:true
+        });
+    });
+
+</script>
+</body>
+</html>
